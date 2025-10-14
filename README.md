@@ -83,7 +83,7 @@ For DIM/CIM (diversity) evaluation, please follow the official repository:[https
 
 ## Citing
 
-If you find this repository useful, please cite:
+If you find this repository useful, please consider to cite:
 
 ```
 @misc{wu2025oscarorthogonalstochasticcontrol,
