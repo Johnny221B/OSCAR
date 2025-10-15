@@ -104,12 +104,6 @@ This project is released under the **MIT License**.See the [LICENSE](./LICENSE) 
 >
 > ```
 
-## Overview
-
-<p align="center">
-  <img src="assets/flow.png" alt="OSCAR pipeline overview" width="900">
-</p>
-
 <p align="center">
   <a href="assets/flow.pdf">View full-resolution PDF</a>
 </p>
