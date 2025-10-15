@@ -1,4 +1,4 @@
-# Oscar — Official GitHub Repository
+# Oscar — ORTHOGONAL STOCHASTIC CONTROL FOR ALIGNMENT-RESPECTING DIVERSITY IN FLOW MATCHING
 
 [![arXiv](https://img.shields.io/badge/arXiv-2510.09060-b31b1b.svg)](https://arxiv.org/abs/2510.09060)
 
@@ -12,6 +12,19 @@ This repository provides the official codebase for **Oscar**. It includes:
 - **`experiments/`** — experiment drivers used to reproduce the results in our paper.
 - **`eval/`** — unified evaluation tools (coverage/diversity/quality) and CSV aggregation.
 - Reference pointers for **DIM/CIM** diversity evaluation (see: [https://github.com/facebookresearch/DIMCIM](https://github.com/facebookresearch/DIMCIM)).
+
+---
+
+## Overview
+
+<p align="center">
+  <img src="assets/flow.png" alt="OSCAR pipeline overview" width="900">
+</p>
+
+
+<p align="center">
+  <em>Figure — Our guidance mechanism: OSCAR applies orthogonal stochastic control to steer flow-matching trajectories for diversity while respecting alignment.</em><br>
+</p>
 
 ---
 
@@ -90,3 +103,13 @@ This project is released under the **MIT License**.See the [LICENSE](./LICENSE) 
 > SPDX-License-Identifier: MIT
 >
 > ```
+
+## Overview
+
+<p align="center">
+  <img src="assets/flow.png" alt="OSCAR pipeline overview" width="900">
+</p>
+
+<p align="center">
+  <a href="assets/flow.pdf">View full-resolution PDF</a>
+</p>
