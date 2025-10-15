@@ -29,28 +29,11 @@ This repository provides the official codebase for **Oscar**. It includes:
 ## Installation
 
 ```bash
-# 1) Create & activate environment
-conda create -n oscar python=3.10 -y
-conda activate oscar
-
-# 2) Core DL stack (adjust CUDA as needed)
-pip install torch torchvision --index-url https://download.pytorch.org/whl/cu121
-
-# 3) Diffusers & ecosystem
-pip install diffusers transformers accelerate safetensors
-
-# 4) Evaluation deps
-pip install numpy pandas pillow tqdm scikit-learn
-pip install vendi-score
-pip install piq clean-fid
-pip install open-clip-torch
-pip install pytorch-msssim
-pip install git+https://github.com/openai/CLIP.git  # if you need openai/CLIP
-
-# Optional: memory-efficient attention
-pip install xformers
----
-
+git clone https://github.com/Johnny221B/OSCAR
+cd OSCAR
+python -m venv .venv && source .venv/bin/activate
+pip install -U pip
+pip install -e .
 ```
 
 ## Models & Checkpoints
@@ -107,4 +90,3 @@ This project is released under the **MIT License**.See the [LICENSE](./LICENSE) 
 > SPDX-License-Identifier: MIT
 >
 > ```
->
