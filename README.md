@@ -21,7 +21,6 @@ This repository provides the official codebase for **Oscar**. It includes:
   <img src="assets/flow.png" alt="OSCAR pipeline overview" width="900">
 </p>
 
-
 <p align="center">
   <em>Figure — Our guidance mechanism: OSCAR applies orthogonal stochastic control to steer flow-matching trajectories for diversity while respecting alignment.</em><br>
 </p>
@@ -83,13 +82,13 @@ If you find this repository useful, please consider to cite:
 
 ```
 @misc{wu2025oscarorthogonalstochasticcontrol,
-  author       = {\textbf{Jingxuan Wu} and Zhenglin Wan and Xingrui Yu and Yuzhe Yang and Bo An and Ivor Tsang},
-  title        = {OSCAR: Orthogonal Stochastic Control for Alignment-Respecting Diversity in {Flow Matching}},
-  year         = {2025},
-  eprinttype   = {arxiv},
-  eprint       = {2510.09060},
-  primaryClass = {cs.AI},
-  url          = {[https://arxiv.org/abs/2510.09060](https://arxiv.org/abs/2510.09060)},
+      title={OSCAR: Orthogonal Stochastic Control for Alignment-Respecting Diversity in Flow Matching}, 
+      author={Jingxuan Wu and Zhenglin Wan and Xingrui Yu and Yuzhe Yang and Bo An and Ivor Tsang},
+      year={2025},
+      eprint={2510.09060},
+      archivePrefix={arXiv},
+      primaryClass={cs.AI},
+      url={https://arxiv.org/abs/2510.09060}, 
 }
 ```
 
