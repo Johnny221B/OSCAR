@@ -2,6 +2,15 @@
 
 [![arXiv](https://img.shields.io/badge/arXiv-2510.09060-b31b1b.svg)](https://arxiv.org/abs/2510.09060)
 
+*Jingxuan Wu\*<sup>1</sup>,
+Zhenglin Wan\*<sup>2</sup>,
+Xingrui Yu<sup>3</sup>,
+Yuzhe Yang<sup>4</sup>,
+Bo An<sup>1</sup>, Ivor Tsang<sup>3</sup><br>*
+
+<sup>1</sup>Department of Statistics and Operations Research, UNC-Chapel Hill, America <sup>2</sup>College of Computing and Data Science, NTU, Singapore <sup>3</sup>Centre for Frontier AI Research, A*STAR, Singapore  <sup>4</sup> UCSB <sup>
+(\*Equal contribution)
+
 > **Official implementation of our paper:**
 > **OSCAR: ORTHOGONAL STOCHASTIC CONTROL FOR ALIGNMENT-RESPECTING DIVERSITY IN FLOW MATCHING**
 > arXiv: https://arxiv.org/abs/2510.09060
