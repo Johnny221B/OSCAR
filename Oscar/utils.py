@@ -2,7 +2,130 @@ from typing import Tuple
 import math
 import torch
 import torch.nn.functional as F
+import torch.nn as nn
+import os
+import re
+import time
 from typing import Tuple, Union, Optional
+from collections import OrderedDict
+
+# ---- logging / mem ----
+
+def _gb(x): 
+    return f"{x/1024**3:.2f} GB"
+
+def log(s: str, debug: bool = True):
+    ts = time.strftime("%H:%M:%S")
+    if debug:
+        print(f"[{ts}] {s}", flush=True)
+
+def print_mem_all(tag: str, devices: list):
+    lines = [f"[{tag}]"]
+    for d in devices:
+        if d.type == 'cuda':
+            free, total = torch.cuda.mem_get_info(d)
+            used = total - free
+            lines.append(f"  {d}: used={_gb(used)}, free={_gb(free)}")
+        else:
+            lines.append(f"  {d}: CPU")
+    print("\n".join(lines), flush=True)
+
+# ---- model/device introspection ----
+
+def _first_device_of_module(m: nn.Module):
+    if not isinstance(m, nn.Module):
+        return None
+    for p in m.parameters(recurse=False):
+        return p.device
+    for b in m.buffers(recurse=False):
+        return b.device
+    for sm in m.children():
+        for p in sm.parameters(recurse=False):
+            return p.device
+        for b in sm.buffers(recurse=False):
+            return b.device
+    return None
+
+def inspect_pipe_devices(pipe):
+    names = [
+        "transformer",
+        "text_encoder", "text_encoder_2", "text_encoder_3",
+        "vae",
+        "tokenizer", "tokenizer_2", "tokenizer_3", "scheduler",
+    ]
+    report = {}
+    for name in names:
+        if not hasattr(pipe, name):
+            continue
+        obj = getattr(pipe, name)
+        if obj is None:
+            report[name] = "None"
+            continue
+        if isinstance(obj, nn.Module):
+            dev = _first_device_of_module(obj)
+            report[name] = str(dev) if dev is not None else "module(no params)"
+        else:
+            report[name] = "non-module"
+    print("[pipe-devices]", report, flush=True)
+
+def assert_on(m, want):
+    if not isinstance(m, nn.Module):
+        return
+    for p in m.parameters():
+        if str(p.device) != str(want):
+            raise RuntimeError(f"Param on {p.device}, expected {want}")
+    for b in m.buffers():
+        if str(b.device) != str(want):
+            raise RuntimeError(f"Buffer on {b.device}, expected {want}")
+
+# ---- path & text utils ----
+
+def slugify(text: str, maxlen: int = 120) -> str:
+    s = re.sub(r'\s+', '_', text.strip())
+    s = re.sub(r'[^A-Za-z0-9._-]+', '', s)
+    s = re.sub(r'_{2,}', '_', s).strip('._-')
+    return s[:maxlen] if maxlen and len(s) > maxlen else s
+
+def resolve_model_dir(path: str) -> str:
+    p = os.path.abspath(path)
+    if os.path.isfile(os.path.join(p, 'model_index.json')):
+        return p
+    for root, _, files in os.walk(p):
+        if 'model_index.json' in files:
+            return root
+    raise FileNotFoundError(f'Could not find model_index.json under {path}')
+
+def parse_concepts_spec(obj: dict) -> "OrderedDict[str, list]":
+    if not isinstance(obj, dict):
+        raise ValueError("Spec must be a JSON object: {concept: [prompts...]}")
+    out = OrderedDict()
+    for concept, plist in obj.items():
+        if not isinstance(concept, str) or not isinstance(plist, (list, tuple)):
+            continue
+        seen, cleaned = set(), []
+        for p in plist:
+            if isinstance(p, str):
+                s = p.strip()
+                if s and s not in seen:
+                    seen.add(s); cleaned.append(s)
+        if cleaned:
+            out[concept] = cleaned
+    if not out:
+        raise ValueError("No valid {concept: [prompts...]} found in spec.")
+    return out
+
+def build_root_out(project_root: str, method: str, concept: str):
+    base = os.path.join(project_root, "outputs", f"{method}_{slugify(concept)}")
+    imgs = os.path.join(base, "imgs")
+    eval_dir = os.path.join(base, "eval")
+    os.makedirs(imgs, exist_ok=True)
+    os.makedirs(eval_dir, exist_ok=True)
+    return base, imgs, eval_dir
+
+def prompt_run_dir(imgs_root: str, prompt: str, seed: int, guidance: float, steps: int) -> str:
+    pslug = slugify(prompt)
+    return os.path.join(imgs_root, f"{pslug}_seed{seed}_g{guidance}_s{steps}")
+
 
 def make_t_steps(n:int, t0:float=1.0, t1:float=0.0) -> torch.Tensor:
     return torch.linspace(t0, t1, n+1)
