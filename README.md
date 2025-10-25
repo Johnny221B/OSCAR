@@ -2,13 +2,13 @@
 
 [![arXiv](https://img.shields.io/badge/arXiv-2510.09060-b31b1b.svg)](https://arxiv.org/abs/2510.09060)
 
-*Jingxuan Wu\*<sup>1</sup>,
-Zhenglin Wan\*<sup>2</sup>,
-Xingrui Yu<sup>3</sup>,
-Yuzhe Yang<sup>4</sup>,
-Bo An<sup>1</sup>, Ivor Tsang<sup>3</sup><br>*
+*Jingxuan Wu\*`<sup>`1 `</sup>`,
+Zhenglin Wan\*`<sup>`2 `</sup>`,
+Xingrui Yu `<sup>`3 `</sup>`,
+Yuzhe Yang `<sup>`4 `</sup>`,
+Bo An `<sup>`1 `</sup>`, Ivor Tsang `<sup>`3 `</sup><br>`*
 
-<sup>1</sup>Department of Statistics and Operations Research, UNC-Chapel Hill, America <sup>2</sup>College of Computing and Data Science, NTU, Singapore <sup>3</sup>Centre for Frontier AI Research, A*STAR, Singapore  <sup>4</sup> UCSB
+`<sup>`1 `</sup>`Department of Statistics and Operations Research, UNC-Chapel Hill, America `<sup>`2 `</sup>`College of Computing and Data Science, NTU, Singapore `<sup>`3 `</sup>`Centre for Frontier AI Research, A*STAR, Singapore  `<sup>`4 `</sup>` UCSB
 
 (\*: Equal contribution)
 
@@ -60,16 +60,15 @@ pip install -e .
 
 ## Models & Checkpoints
 
-- Use local **Diffusers** SD3 / SD3.5 pipelines. Example layout:`models/stable-diffusion-3.5-medium/`
+- Use local **Diffusers** SD3 / SD3.5 pipelines. Example layout: `models/stable-diffusion-3.5-medium/`.Model page: [Stable Diffusion 3.5 Medium — Hugging Face](https://huggingface.co/stabilityai/stable-diffusion-3.5-medium).
 - Loaders auto-resolve nested directories by searching for `model_index.json`.
-
-**OpenAI CLIP (JIT):** Provide a local `ViT-B-32.pt`, for example, `~/.cache/clip/ViT-B-32.pt`. The code falls back to **open\_clip** if the JIT file is unavailable.
+- **OpenAI CLIP (JIT).** Provide `ViT-B-32.pt` locally (e.g., `~/.cache/clip/ViT-B-32.pt`). If absent, the code falls back to **open_clip**.
 
 ## Quick Start
 
 ```
     CUDA_VISIBLE_DEVICES=0,1 python -u scripts/ourmethod.py \
-      --spec multi_class.json \
+      --spec specs/multi_class.json \
       --guidances 3.0 \
       --seeds 1111 2222 3333 4444 \
       --model-dir ./models/stable-diffusion-3.5-medium \
