@@ -105,9 +105,7 @@ If you find this repository useful, please consider to cite:
 
 This project is released under the **MIT License**.See the [LICENSE](./LICENSE) file for the full text.
 
-> Optional (recommended): add an SPDX tag to source files:
->
-> ```text
-> SPDX-License-Identifier: MIT
->
-> ```
+```text
+SPDX-License-Identifier: MIT
+
+```
