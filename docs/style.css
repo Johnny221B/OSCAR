@@ -4,3 +4,5 @@
 .timeline-images button{padding:0;background:transparent;border-radius:4px;overflow:hidden}
 
 .intro .split a{text-decoration:underline;text-underline-offset:3px;color:var(--green)}
+
+.budget-controls{display:flex;align-items:center;gap:32px;margin:28px 0 20px}.budget-controls>label{min-width:150px;color:var(--ink)}.budget-slider{flex:1}.budget-slider input{display:block;width:100%;margin:0;accent-color:var(--green);cursor:ew-resize}.budget-ticks{display:flex;justify-content:space-between;font-size:11px;color:var(--muted);margin-top:10px}@media(max-width:800px){.budget-controls{display:block}.budget-slider{margin-top:18px}}
