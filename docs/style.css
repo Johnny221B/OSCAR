@@ -6,3 +6,5 @@
 .intro .split a{text-decoration:underline;text-underline-offset:3px;color:var(--green)}
 
 .budget-controls{display:flex;align-items:center;gap:32px;margin:28px 0 20px}.budget-controls>label{min-width:150px;color:var(--ink)}.budget-slider{flex:1}.budget-slider input{display:block;width:100%;margin:0;accent-color:var(--green);cursor:ew-resize}.budget-ticks{display:flex;justify-content:space-between;font-size:11px;color:var(--muted);margin-top:10px}@media(max-width:800px){.budget-controls{display:block}.budget-slider{margin-top:18px}}
+
+.showcase-caption{display:flex;justify-content:space-between;gap:18px;align-items:center;margin:0 0 20px;font-size:11px;color:var(--green);letter-spacing:.7px}.showcase-caption a{letter-spacing:0;text-decoration:underline;text-underline-offset:4px;white-space:nowrap}.showcase-scroll{overflow-x:auto;scrollbar-color:var(--green) #e9eddf}.showcase-scroll .image-open{min-width:1100px}.showcase-figure img{max-height:none}.showcase-figure figcaption{font-size:13px;color:var(--ink);margin-top:20px}.showcase-figure .fine{margin:12px 0 0}@media(max-width:800px){.showcase-caption{font-size:9px;gap:8px}.showcase-caption span{max-width:150px}}
